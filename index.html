@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para Maria Luiza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Playfair+Display:ital,wght@0,600;1,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#C2185B;--rose:#AD1457;--ink:#5A1F38;--ink2:#6D2846;--blush:#FFF0F4;--pink:#FCE4EC;--line:#F8D3DF}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--blush);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;overflow-x:hidden}
+img{max-width:100%}
+a{color:var(--rose)}
+.wrap{max-width:1120px;margin:0 auto}
+.eyebrow{margin:0;font-size:14px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--rose)}
+.script{font-family:'Dancing Script',cursive;color:var(--accent);margin:0;line-height:1}
+.serif{font-family:'Playfair Display',serif}
+.head{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.head h2{font-size:clamp(48px,6vw,72px)}
+section{padding:96px 24px;position:relative}
+.heart{display:inline-block}
+
+/* petals */
+.petals{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden}
+.petal{position:absolute;top:0;border-radius:150% 0 150% 0;opacity:0;animation:fall linear infinite}
+@keyframes fall{0%{transform:translateY(-8vh) rotate(0);opacity:0}10%{opacity:.9}100%{transform:translateY(108vh) rotate(540deg);opacity:0}}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.14)}30%{transform:scale(1)}45%{transform:scale(1.1)}}
+@keyframes sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes eq{0%,100%{height:4px}50%{height:18px}}
+.beat{animation:beat 1.6s ease-in-out infinite}
+.sway{animation:sway 6s ease-in-out infinite;transform-origin:50% 100%}
+
+/* intro */
+.intro{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(circle at 50% 40%,#FCE4EC 0%,#F8BBD0 70%,#F48FB1 100%);transition:opacity .9s ease,visibility .9s ease}
+.intro.hide{opacity:0;visibility:hidden}
+.intro-card{text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
+.envelope{position:relative;width:220px;height:150px;background:#FFFFFF;border-radius:14px;box-shadow:0 24px 60px rgba(173,20,87,.3);overflow:hidden}
+.envelope:before{content:"";position:absolute;left:0;right:0;top:0;height:0;border-left:110px solid transparent;border-right:110px solid transparent;border-top:86px solid #FCE4EC}
+.envelope .seal{position:absolute;left:50%;top:58px;transform:translateX(-50%)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;font-weight:700;font-size:17px;text-decoration:none;cursor:pointer;font-family:'Nunito',sans-serif;border:none}
+.btn-main{background:var(--accent);color:#FFFFFF;box-shadow:0 10px 24px rgba(194,24,91,.3)}
+.btn-ghost{background:#FFFFFF;color:var(--rose);border:2px solid #F8BBD0}
+
+/* hero */
+.hero{background:linear-gradient(180deg,#FCE4EC 0%,var(--blush) 100%);padding:72px 24px 96px}
+.hero .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:56px}
+.hero-text{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.hero-text h1{font-size:clamp(64px,11vw,112px);line-height:.95;margin:0;font-family:'Dancing Script',cursive;color:var(--accent)}
+.hero-photo{flex:1 1 360px;min-width:0;display:flex;justify-content:center}
+.frame{position:relative;width:min(100%,400px)}
+.frame img.main{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:34% center;border-radius:220px 220px 28px 28px;border:10px solid #FFFFFF;box-shadow:0 24px 60px rgba(173,20,87,.25)}
+.flower{position:absolute}
+
+/* carta */
+.letter{max-width:760px;margin:0 auto;position:relative}
+.letter article{background:#FFFFFF;border-radius:28px;padding:clamp(32px,6vw,64px);box-shadow:0 24px 60px rgba(173,20,87,.12);border:1px solid var(--line);display:flex;flex-direction:column;gap:20px}
+.letter p.body{margin:0;font-family:'Playfair Display',serif;font-size:20px;line-height:1.75}
+
+/* polaroids */
+.masonry{columns:4 230px;column-gap:24px}
+.polaroid{break-inside:avoid;margin:0 0 24px;background:#FFFFFF;padding:12px 12px 14px;border-radius:8px;box-shadow:0 10px 28px rgba(173,20,87,.14);transition:transform .3s ease,box-shadow .3s ease;position:relative}
+.polaroid:hover{transform:rotate(0) scale(1.04)!important;box-shadow:0 18px 40px rgba(173,20,87,.25);z-index:2}
+.polaroid img{display:block;width:100%;height:auto;border-radius:4px}
+.polaroid figcaption{font-family:'Dancing Script',cursive;font-size:24px;color:var(--ink2);text-align:center;padding-top:10px}
+
+/* galeria */
+.viewer{position:relative;background:#FFFFFF;border-radius:32px;padding:16px;box-shadow:0 24px 60px rgba(173,20,87,.16);border:1px solid var(--line)}
+.stage{position:relative;height:clamp(360px,62vw,600px);border-radius:22px;overflow:hidden;background:var(--pink)}
+.stage .bg{position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);max-width:none;object-fit:cover;filter:blur(28px) saturate(1.2);opacity:.55}
+.stage .fg{position:relative;display:block;width:100%;height:100%;object-fit:contain;transition:opacity .35s ease}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:none;background:rgba(255,255,255,.92);color:var(--rose);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.15)}
+.nav.prev{left:16px}.nav.next{right:16px}
+.count{position:absolute;top:16px;right:16px;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--rose);font-weight:700;font-size:14px}
+.cap{display:flex;align-items:center;justify-content:center;gap:10px;padding:18px 8px 6px}
+.cap p{margin:0;font-family:'Dancing Script',cursive;font-size:32px;color:var(--ink);text-align:center}
+.thumbs{display:flex;gap:12px;overflow-x:auto;padding:6px 4px 14px;scroll-snap-type:x mandatory}
+.thumb{flex:0 0 84px;width:84px;height:84px;padding:0;border-radius:14px;cursor:pointer;scroll-snap-align:start;background:#FFFFFF;border:3px solid transparent;opacity:.7;transition:all .2s ease}
+.thumb.on{border-color:var(--accent);opacity:1;box-shadow:0 8px 20px rgba(194,24,91,.3)}
+.thumb img{display:block;width:100%;height:100%;object-fit:cover;border-radius:10px}
+
+/* motivos */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.card{background:#FFFFFF;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:14px;box-shadow:0 12px 32px rgba(173,20,87,.08);border:1px solid var(--line)}
+.card .ic{width:56px;height:56px;border-radius:50%;background:var(--pink);display:flex;align-items:center;justify-content:center}
+.card h3{margin:0;font-family:'Playfair Display',serif;font-size:24px}
+.card p{margin:0;font-size:17px;line-height:1.6;color:var(--ink2)}
+
+/* pergunta */
+.ask{background:linear-gradient(180deg,#FCE4EC 0%,#F8BBD0 100%)}
+.ask-box{max-width:760px;margin:0 auto;background:#FFFFFF;border-radius:32px;padding:clamp(36px,6vw,64px);text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px;box-shadow:0 24px 60px rgba(173,20,87,.18)}
+.choices{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:20px;min-height:120px;align-items:center;padding:20px 0}
+#no{transition:transform .35s ease}
+.yes-msg{display:none;flex-direction:column;align-items:center;gap:16px}
+.ask.done .question{display:none}.ask.done .yes-msg{display:flex}
+
+/* final */
+.final .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:56px}
+.final img{width:min(100%,320px);aspect-ratio:3/4;object-fit:cover;border-radius:24px;border:10px solid #FFFFFF;box-shadow:0 24px 60px rgba(173,20,87,.2);transform:rotate(-3deg)}
+
+/* player */
+.player{position:fixed;left:16px;bottom:16px;z-index:20;display:flex;align-items:center;gap:12px;max-width:calc(100% - 32px);padding:10px 16px 10px 10px;border-radius:999px;background:rgba(255,255,255,.96);border:1px solid var(--line);box-shadow:0 12px 32px rgba(173,20,87,.22)}
+.disc{flex:0 0 48px;width:48px;height:48px;border-radius:50%;background:radial-gradient(circle,#F48FB1 0 7px,#2B0F1C 8px 15px,#4A1A30 16px 17px,#2B0F1C 18px 23px,#4A1A30 24px)}
+.player.playing .disc{animation:spin 4s linear infinite}
+.meta{display:flex;flex-direction:column;min-width:0}
+.meta .st{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.meta .t{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta .a{font-size:13px;color:var(--ink2)}
+.eqs{display:none;align-items:flex-end;gap:3px;height:18px}
+.player.playing .eqs{display:flex}
+.eqs span{display:inline-block;width:4px;border-radius:2px;background:#E91E63;animation:eq .9s ease-in-out infinite}
+.pp{flex:0 0 44px;width:44px;height:44px;border-radius:50%;border:none;background:var(--accent);color:#FFFFFF;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pp .i-pause{display:none}.player.playing .pp .i-pause{display:block}.player.playing .pp .i-play{display:none}
+.player .ext{display:none;font-size:13px;font-weight:700;white-space:nowrap}
+.player.noaudio .ext{display:inline-flex}
+
+@media (prefers-reduced-motion:reduce){.petal,.beat,.sway,.disc,.eqs span{animation:none!important}.petals{display:none}}
+</style>
+</head>
+<body>
+
+<!-- abertura -->
+<div class="intro" id="intro">
+  <div class="intro-card">
+    <div class="envelope sway" aria-hidden="true">
+      <svg class="seal beat" width="44" height="44" viewBox="0 0 24 24" fill="#C2185B"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.1 4.2 2.6.6-1.5 2.1-2.6 4.2-2.6 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>
+    </div>
+    <p class="eyebrow">Você recebeu uma carta</p>
+    <p class="script" style="font-size:clamp(52px,12vw,84px)">Maria Luiza</p>
+    <button class="btn btn-main" id="open" type="button">Toque para abrir</button>
+    <p style="margin:0;font-size:14px;color:#6D2846">aumenta o som 🎶</p>
+  </div>
+</div>
+
+<div class="petals" id="petals" aria-hidden="true"></div>
+
+<!-- player -->
+<div class="player" id="player">
+  <div class="disc" aria-hidden="true"></div>
+  <div class="meta">
+    <span class="st" id="pst">Pausado</span>
+    <span class="t">Fico Assim Sem Você</span>
+    <span class="a">Claudinho &amp; Buchecha</span>
+  </div>
+  <div class="eqs" aria-hidden="true"><span></span><span style="animation-delay:.2s"></span><span style="animation-delay:.4s"></span><span style="animation-delay:.1s"></span></div>
+  <button class="pp" id="pp" type="button" aria-label="Tocar música">
+    <svg class="i-play" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="i-pause" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+  </button>
+  <a class="ext" href="https://open.spotify.com/search/fico%20assim%20sem%20voc%C3%AA%20claudinho%20e%20buchecha">Ouvir no Spotify</a>
+</div>
+<audio id="music" src="musica.mp3" loop preload="auto"></audio>
+
+<!-- hero -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <p class="eyebrow">Uma declaração de amor para</p>
+      <h1>Maria Luiza</h1>
+      <p class="serif" style="margin:0;font-style:italic;font-size:24px;line-height:1.5;color:var(--ink2);max-width:460px">Fiz um site inteiro só pra você, porque uma mensagem não ia caber tudo o que eu sinto.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:12px">
+        <a class="btn btn-main" href="#carta"><svg class="beat" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.1 4.2 2.6.6-1.5 2.1-2.6 4.2-2.6 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>Abrir minha carta</a>
+        <a class="btn btn-ghost" href="#galeria">Ver nossa galeria</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="frame" id="frame">
+        <img class="main" src="img/hero.jpg" alt="Yure beijando o rosto da Maria Luiza numa selfie no espelho">
+        <svg aria-hidden="true" viewBox="0 0 120 60" style="position:absolute;left:-54px;bottom:40px;width:110px;transform:rotate(-20deg)"><path d="M5 55 C40 50 80 30 115 5" stroke="#7CB07F" stroke-width="3" fill="none"/><ellipse cx="40" cy="42" rx="16" ry="7" fill="#9CCB9E" transform="rotate(-30 40 42)"/><ellipse cx="75" cy="26" rx="16" ry="7" fill="#9CCB9E" transform="rotate(-40 75 26)"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- carta -->
+<section id="carta">
+  <div class="letter">
+    <article>
+      <p class="eyebrow">Uma carta pra você</p>
+      <h2 class="script" style="font-size:56px;margin-bottom:8px">Maria Luiza,</h2>
+      <p class="body">Com você, qualquer lugar vira o meu lugar favorito: o banco de trás do carro, o sofá, a sala de aula, a mesa com guacamole. Você transforma dias normais em lembranças que eu quero guardar pra sempre.</p>
+      <p class="body">Obrigado por cada careta, cada risada sem motivo, cada vez que a gente fica encostadinho e o resto do mundo some. Obrigado por ser minha parceira, minha melhor amiga e a pessoa que eu mais quero ver todos os dias.</p>
+      <p class="body">Eu te amo exatamente do jeitinho que você é. E escolho você hoje, amanhã e em todos os dias que ainda vão vir.</p>
+      <div style="display:flex;flex-direction:column;gap:2px;margin-top:16px">
+        <span class="serif" style="font-style:italic;font-size:18px;color:var(--ink2)">Com todo o meu amor,</span>
+        <span class="script" style="font-size:44px">Yure</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- momentos -->
+<section id="momentos" style="background:var(--pink)">
+  <div class="wrap" style="display:flex;flex-direction:column;gap:48px">
+    <div class="head">
+      <p class="eyebrow">Nosso álbum</p>
+      <h2 class="script">Nossos momentos</h2>
+      <p style="margin:0;font-size:18px;color:var(--ink2);max-width:520px">Das fotos lindas às caretas mais feias, todas são minhas favoritas.</p>
+    </div>
+    <div class="masonry" id="masonry"></div>
+  </div>
+</section>
+
+<!-- galeria -->
+<section id="galeria">
+  <div class="wrap" style="max-width:1040px;display:flex;flex-direction:column;gap:36px">
+    <div class="head">
+      <p class="eyebrow">Passa pro lado</p>
+      <h2 class="script">Galeria do nosso amor</h2>
+      <p style="margin:0;font-size:18px;color:var(--ink2);max-width:520px">Cada foto é um pedacinho da nossa história.</p>
+    </div>
+    <div class="viewer">
+      <div class="stage" id="stage">
+        <img class="bg" id="gbg" src="img/g01.jpg" alt="" aria-hidden="true">
+        <img class="fg" id="gfg" src="img/g01.jpg" alt="">
+        <button class="nav prev" id="gprev" type="button" aria-label="Foto anterior"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="nav next" id="gnext" type="button" aria-label="Próxima foto"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+        <span class="count" id="gcount">1 / 20</span>
+      </div>
+      <div class="cap">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="#E91E63"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.1 4.2 2.6.6-1.5 2.1-2.6 4.2-2.6 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>
+        <p id="gcap"></p>
+      </div>
+    </div>
+    <div class="thumbs" id="thumbs"></div>
+  </div>
+</section>
+
+<!-- motivos -->
+<section style="background:var(--pink)">
+  <div class="wrap" style="display:flex;flex-direction:column;gap:48px">
+    <div class="head">
+      <p class="eyebrow">Só alguns, porque a lista é infinita</p>
+      <h2 class="script">Coisas que eu amo em você</h2>
+    </div>
+    <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<!-- pergunta -->
+<section class="ask" id="ask">
+  <div class="ask-box">
+    <svg class="beat" aria-hidden="true" width="72" height="72" viewBox="0 0 24 24" fill="#C2185B"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.1 4.2 2.6.6-1.5 2.1-2.6 4.2-2.6 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>
+    <div class="question" style="display:flex;flex-direction:column;align-items:center;gap:28px">
+      <h2 class="serif" style="margin:0;font-size:clamp(28px,4vw,40px);line-height:1.3">Maria Luiza, você aceita continuar escrevendo essa história comigo?</h2>
+      <div class="choices">
+        <button class="btn btn-main" id="yes" type="button" style="font-size:20px;padding:0 40px;min-height:56px">Sim, pra sempre</button>
+        <button class="btn btn-ghost" id="no" type="button">Não</button>
+      </div>
+    </div>
+    <div class="yes-msg">
+      <h2 class="script" style="font-size:clamp(56px,8vw,84px)">Eu sabia!</h2>
+      <p class="serif" style="margin:0;font-style:italic;font-size:22px;line-height:1.6;max-width:480px">Então tá combinado: mais caretas, mais rolês, mais guacamole e muito, muito mais amor. Te amo!</p>
+      <div aria-hidden="true" style="display:flex;gap:10px;align-items:center">
+        <svg class="beat" width="22" height="22" viewBox="0 0 24 24" fill="#F48FB1"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.1 4.2 2.6.6-1.5 2.1-2.6 4.2-2.6 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>
+        <svg class="beat" style="animation-delay:.2s" width="30" height="30" viewBox="0 0 24 24" fill="#EC407A"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.1 4.2 2.6.6-1.5 2.1-2.6 4.2-2.6 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>
+        <svg class="beat" style="animation-delay:.4s" width="40" height="40" viewBox="0 0 24 24" fill="#C2185B"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.1 4.2 2.6.6-1.5 2.1-2.6 4.2-2.6 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>
+        <svg class="beat" style="animation-delay:.6s" width="30" height="30" viewBox="0 0 24 24" fill="#EC407A"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.1 4.2 2.6.6-1.5 2.1-2.6 4.2-2.6 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>
+        <svg class="beat" style="animation-delay:.8s" width="22" height="22" viewBox="0 0 24 24" fill="#F48FB1"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.1 4.2 2.6.6-1.5 2.1-2.6 4.2-2.6 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- final -->
+<section class="final" style="padding-bottom:140px">
+  <div class="wrap">
+    <img src="img/final.jpg" alt="Maria Luiza e Yure abraçados e rindo, em preto e branco">
+    <div style="flex:0 1 460px;display:flex;flex-direction:column;gap:16px;text-align:center;align-items:center">
+      <p class="script" style="font-size:clamp(56px,7vw,88px)">Te amo, Maria Luiza</p>
+      <p class="serif" style="margin:0;font-style:italic;font-size:20px;color:var(--ink2)">Hoje, amanhã e em todos os capítulos que ainda vamos escrever.</p>
+      <p style="margin:16px 0 0;font-size:15px;color:#8A3A5C">com amor, Yure</p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var HEART='<path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.1 4.2 2.6.6-1.5 2.1-2.6 4.2-2.6 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/>';
+  function el(tag,attrs,html){var e=document.createElement(tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(html)e.innerHTML=html;return e;}
+
+  // pétalas
+  var pc=['#F8BBD0','#F48FB1','#FCE4EC','#F06292'],petals=document.getElementById('petals');
+  for(var i=0;i<18;i++){var s=10+(i*7)%10;petals.appendChild(el('span',{class:'petal',style:'left:'+((i*37+7)%100)+'%;width:'+s+'px;height:'+Math.round(s*1.3)+'px;background:'+pc[i%4]+';animation-duration:'+(9+(i*5)%9)+'s;animation-delay:'+((i*1.3)%12).toFixed(1)+'s'}));}
+
+  // flores da foto principal
+  var fl=[['#F06292','top:-30px;left:-34px;width:96px'],['#F8BBD0','top:26px;left:-48px;width:56px;animation-delay:-2s'],['#EC407A','top:-14px;right:-26px;width:72px;animation-delay:-1s'],['#F48FB1','bottom:-28px;right:-36px;width:104px;animation-delay:-3s'],['#FCE4EC','bottom:56px;right:-44px;width:52px;animation-delay:-4s'],['#F06292','bottom:-20px;left:30px;width:60px;animation-delay:-5s']];
+  var frame=document.getElementById('frame');
+  fl.forEach(function(f){frame.appendChild(el('span',{class:'flower sway',style:f[1]+';display:block;aspect-ratio:1','aria-hidden':'true'},'<svg viewBox="0 0 100 100" width="100%" height="100%"><g fill="'+f[0]+'"><circle cx="50" cy="27" r="20"/><circle cx="72" cy="43" r="20"/><circle cx="64" cy="69" r="20"/><circle cx="36" cy="69" r="20"/><circle cx="28" cy="43" r="20"/></g><circle cx="50" cy="51" r="11" fill="#FFE08A"/></svg>'));});
+
+  // polaroids
+  var pol=[['nosso sofá favorito','Os dois sorrindo juntos no sofá'],['rolês no banco de trás','Selfie com caretas no banco de trás do carro'],['beijinho surpresa','Maria Luiza dando um beijo no rosto do Yure'],['noite do guacamole','Os dois comendo nachos com guacamole'],['até na sala de aula','Selfie juntos na sala de aula'],['espelho, espelho meu','Selfie no espelho, abraçados'],['língua de fora, sempre','Maria Luiza mostrando a língua ao lado do Yure'],['jantarzinho','Os dois sorrindo em um restaurante'],['biquinho oficial','Os dois fazendo biquinho e careta'],['qualquer lugar com você','Selfie sorrindo em casa'],['esse sorriso','Os dois sorrindo de rostinho colado'],['modo palhaço ativado','Caretas engraçadas de perto'],['fazendo pose','Selfie na escola, ela fazendo biquinho'],['rock and love','Selfie no carro com ela fazendo sinal de rock']];
+  var rots=[-3,2,-1.5,3,-2.5,1.5,-1,2.5],mas=document.getElementById('masonry');
+  pol.forEach(function(p,i){var n=('0'+(i+1)).slice(-2);var f=el('figure',{class:'polaroid',style:'transform:rotate('+rots[i%8]+'deg)'});f.appendChild(el('img',{src:'img/p'+n+'.jpg',alt:p[1],loading:'lazy'}));f.appendChild(el('figcaption',{},p[0]));mas.appendChild(f);});
+
+  // galeria
+  var gal=[['o beijo mais lindo','Yure beijando o rosto da Maria Luiza'],['dia de sol com você','Selfie sorrindo num dia de sol'],['UNI ONU: delegação do coração','Os dois com crachás da UNI ONU no jardim'],['arrumadinhos','Selfie no espelho, os dois arrumados'],['noite boa é com você','Os dois abraçados à noite'],['açaí e língua de fora','Maria Luiza com açaí mostrando a língua'],['elegantes na UNI ONU','Os dois arrumados no evento UNI ONU'],['abraço apertado','Maria Luiza abraçando e beijando o Yure'],['sorrisão de passeio','Os dois sorrindo no carro'],['dupla imbatível','Os dois sentados juntos na sala da UNI ONU'],['Terceirão 2026','Os dois com a camiseta do Terceirão 2026'],['pose de capa de álbum','Selfie séria em frente a uma janela'],['verão com você','Selfie no sol com plantas ao fundo'],['rock and love na escola','Os dois abraçados na escola, ela fazendo sinal de rock'],['batom vermelho e eu do lado','Selfie na sala de aula'],['do meu lado até no hospital','Maria Luiza visitando o Yure no hospital'],['energia lá em cima','Selfie embaixo de uma árvore, ela mostrando a língua'],['abraço por trás','Maria Luiza abraçando o Yure por trás'],['dupla de palhaços','Os dois fazendo careta de língua'],['foto tremida, amor firme','Selfie tremida na cozinha']];
+  var cur=0,thumbs=document.getElementById('thumbs'),fg=document.getElementById('gfg'),bg=document.getElementById('gbg');
+  function src(i){return 'img/g'+('0'+(i+1)).slice(-2)+'.jpg';}
+  gal.forEach(function(g,i){var b=el('button',{class:'thumb',type:'button','aria-label':'Ver foto '+(i+1)+': '+g[0]});b.appendChild(el('img',{src:src(i),alt:'',loading:'lazy'}));b.onclick=function(){show(i);};thumbs.appendChild(b);});
+  function show(i){cur=(i+gal.length)%gal.length;fg.style.opacity=0;setTimeout(function(){fg.src=src(cur);bg.src=src(cur);fg.alt=gal[cur][1];fg.style.opacity=1;},180);document.getElementById('gcap').textContent=gal[cur][0];document.getElementById('gcount').textContent=(cur+1)+' / '+gal.length;var ts=thumbs.children;for(var k=0;k<ts.length;k++)ts[k].classList.toggle('on',k===cur);ts[cur].scrollIntoView({block:'nearest',inline:'nearest',behavior:'smooth'});}
+  document.getElementById('gprev').onclick=function(){show(cur-1);};
+  document.getElementById('gnext').onclick=function(){show(cur+1);};
+  var tx=null,stage=document.getElementById('stage');
+  stage.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
+  stage.addEventListener('touchend',function(e){if(tx===null)return;var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)show(cur+(dx<0?1:-1));tx=null;});
+  show(0);
+
+  // motivos
+  var rs=[['Seu sorriso','Ele ilumina até foto tirada no escuro do banco de trás do carro.'],['Suas caretas','Ninguém mostra a língua com tanto estilo quanto você.'],['Seu abraço','O lugar mais seguro e mais quentinho que eu conheço.'],['Sua risada','Meu som favorito no mundo, principalmente quando é por besteira.'],['Seu jeito','Carinhosa, engraçada, linda e completamente única.'],['Nós dois','Porque com você tudo fica mais leve, mais divertido e mais bonito.']];
+  var cards=document.getElementById('cards');
+  rs.forEach(function(r){cards.appendChild(el('div',{class:'card'},'<div class="ic"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="#E91E63">'+HEART+'</svg></div><h3></h3><p></p>'));var c=cards.lastChild;c.querySelector('h3').textContent=r[0];c.querySelector('p').textContent=r[1];});
+
+  // pergunta
+  var moves=['translate(0,0)','translate(120px,-40px)','translate(-150px,30px)','translate(90px,50px)','translate(-110px,-45px)','translate(150px,20px)'];
+  var labels=['Não','Tem certeza?','Pensa bem...','Erro: opção indisponível','Clica no outro!','Não adianta fugir'];
+  var ni=0,no=document.getElementById('no');
+  function run(){ni++;var m=moves[ni%moves.length];if(window.innerWidth<600)m=m.replace(/(-?\d+)px/g,function(_,n){return Math.round(n*0.45)+'px';});no.style.transform=m;no.textContent=labels[ni%labels.length];}
+  no.addEventListener('mouseenter',run);no.addEventListener('click',run);
+  document.getElementById('yes').onclick=function(){document.getElementById('ask').classList.add('done');};
+
+  // música
+  var audio=document.getElementById('music'),player=document.getElementById('player'),pp=document.getElementById('pp'),pst=document.getElementById('pst'),hasAudio=true;
+  function ui(){var on=!audio.paused;player.classList.toggle('playing',on);pst.textContent=on?'Tocando agora':(hasAudio?'Pausado':'Toque pra ouvir');pp.setAttribute('aria-label',on?'Pausar música':'Tocar música');}
+  audio.addEventListener('play',ui);audio.addEventListener('pause',ui);
+  audio.addEventListener('error',function(){hasAudio=false;player.classList.add('noaudio');ui();});
+  function play(){if(!hasAudio)return;var p=audio.play();if(p&&p.catch)p.catch(function(){ui();});}
+  pp.onclick=function(){if(!hasAudio){window.location.href=player.querySelector('.ext').href;return;}audio.paused?play():audio.pause();};
+  document.getElementById('open').onclick=function(){document.getElementById('intro').classList.add('hide');play();};
+})();
+</script>
+</body>
+</html>

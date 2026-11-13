@@ -1,0 +1,7 @@
+Site para Maria Luiza
+
+1. Coloque o arquivo da música nesta pasta, com o nome exatamente: musica.mp3
+2. Abra o arquivo index.html no navegador (dois cliques).
+3. Toque em "Toque para abrir" e a música começa.
+
+Sem o musica.mp3, o player abre a música no Spotify.
